@@ -40,7 +40,37 @@ The sequence should contain standard DNA bases: A, T, G, C
 Input: ATGCATGCGTAA
 
 GeneFlow analyzes the sequence and reports information including
-sequsequenceposition, ORFs, mRNA, and translated amino acid chains.
+sequence length and compositions, ORFs, mRNA sequences, and translated amino acid chains.
+
+Output :
+
+ Entered sequence is a Valid DNA
+ 
+ The length of the sequence is : 12
+ 
+ The number of Adenine bases in the sequence is : 4
+ 
+ The number of Thymine bases in the sequence is : 3
+
+ The number of Guanine bases in the sequence is : 3
+ 
+ The number of Cytosine bases in the sequence is : 2
+
+ AT Percentage is :58.33%
+
+ GC Percentage is :41.67%
+ 
+ The ORF sequence is : ATGCATGCGTAA
+
+ ORF Starts from : 1
+
+ ORF Ends at : 12
+
+ Length of the ORF is : 12
+
+ The Transcribed mRNA sequence is : AUGCAUGCGUAA
+
+The Translated Amino acid chain is : Met-His-Ala
 
 ## Project Status
 GeneFlow is an ongoing learning project. Future improvements may
