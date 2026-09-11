@@ -23,9 +23,10 @@ codon = {
 
 
 # DNA input standardizer
-with open("input_dna.txt", "r") as file :
-	dna = file.read().upper().strip().replace(" ", ""). replace("\n", "")
+with open("input_dna.txt","r") as file :
+	dna = file.read().upper().strip().replace(" ", ""). replace ("\n", "")
 #dna = input(" Enter your desired DNA sequence : ").upper().strip().replace(" ", "")
+min_length = int(input (" The minimum ORF length should be : "))
 bases = ["A", "T", "G", "C"]
 valid = True
 
@@ -52,7 +53,7 @@ if valid == True:
     print(" The number of Guanine bases in the sequence is :", guanine_count)
     print(" The number of Cytosine bases in the sequence is :", cytosine_count)
     print(f" AT Percentage is :{round(at_per, 2)}%")
-    print(f" GC Percentage is :{round(gc_per, 2)}%")
+    print(f" GC Percentage is :{round(gc_per,2)}%")
 
     # Multiple ORF Tracker
 
@@ -67,7 +68,7 @@ if valid == True:
         if start == -1:
 
             if orf_found == False and no_orf_exists == False:
-                print(" No ORF exists")
+                print("No ORF exists")
             break
 
         else:
@@ -89,6 +90,11 @@ if valid == True:
                     stop_found = True
                     orf_length = len(orf)
                     orf_end = s + 3
+                    
+                    if orf_length < min_length :
+                    	starting_position = s + 3
+                    	stop_found = False
+                    	break
                     orf_number = orf_number + 1
                     starting_position = s + 3
                     break
@@ -117,14 +123,14 @@ if valid == True:
 
                     if amino_acids == "STOP":
                         break
-                        
-                    amino_list.append(amino_acids)
+                    
+                    amino_list.append(amino_acids) 
                     protein = "-".join(amino_list)
 
                 print(f" The translated amino acid chain is : {protein}")
 
             else:
-                starting_position = start +3
+                starting_position = start + 3
 
 else:
     print(" Entered sequence is an Invalid DNA")
