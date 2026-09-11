@@ -14,7 +14,7 @@ composition analysis, ORF detection, transcription, and translation.
 - DNA sequence length calculation
 - A, T, G, and C base counting
 - GC% and AT% calculation
-- Open Reading Frame (ORF) detection
+- Open Reading Frame (ORF) detection and custom minimum ORF length selection
 - Transcription of DNA to mRNA
 - Translation of mRNA into an amino acid sequence
 
