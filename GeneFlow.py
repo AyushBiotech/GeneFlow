@@ -20,13 +20,20 @@ codon = {
     "GAU": "Asp", "GAC": "Asp", "GAA": "Glu", "GAG": "Glu",
     "GGU": "Gly", "GGC": "Gly", "GGA": "Gly", "GGG": "Gly"
 }
+from datetime import datetime
+timestamp = datetime. now(). strftime("%d-%m-%Y_%H:%M:%S")
+
+text_bucket = [] #To store text outputd in this list
+def special_print(text) :
+	print(text) 
+	text_bucket.append(text) 
 
 
 # DNA input standardizer
-with open("input_dna.txt","r") as file :
-	dna = file.read().upper().strip().replace(" ", ""). replace ("\n", "")
+with open("input_dna.txt", "r") as file :
+	dna = file.read().upper().strip().replace(" ", ""). replace("\n", "")
 #dna = input(" Enter your desired DNA sequence : ").upper().strip().replace(" ", "")
-min_length = int(input (" The minimum ORF length should be : "))
+min_length = int(input(" The minimum ORF length should be : "))
 bases = ["A", "T", "G", "C"]
 valid = True
 
@@ -35,7 +42,7 @@ for base in dna:
         valid = False
 
 if valid == True:
-    print(" Entered sequence is a Valid DNA")
+    special_print(" Entered sequence is a Valid DNA")
 
     # Sequence Analyzer
     length = (len(dna))
@@ -47,13 +54,13 @@ if valid == True:
     gc_per = (((guanine_count + cytosine_count) / (len(dna))) * 100)
     at_per = (((adenine_count + thymine_count) / (len(dna))) * 100)
 
-    print(" The length of the sequence is :", length)
-    print(" The number of Adenine bases in the sequence is :", adenine_count)
-    print(" The number of Thymine bases in the sequence is :", thymine_count)
-    print(" The number of Guanine bases in the sequence is :", guanine_count)
-    print(" The number of Cytosine bases in the sequence is :", cytosine_count)
-    print(f" AT Percentage is :{round(at_per, 2)}%")
-    print(f" GC Percentage is :{round(gc_per,2)}%")
+    special_print(f" The length of the sequence is : {length}")
+    special_print(f" The number of Adenine bases in the sequence is : {adenine_count}")
+    special_print(f" The number of Thymine bases in the sequence is : {thymine_count}")
+    special_print(f" The number of Guanine bases in the sequence is : {guanine_count}")
+    special_print(f" The number of Cytosine bases in the  is : {cytosine_count}")
+    special_print(f" AT Percentage is :{round(at_per, 2)}%")
+    special_print(f" GC Percentage is :{round(gc_per, 2)}%")
 
     # Multiple ORF Tracker
 
@@ -68,7 +75,7 @@ if valid == True:
         if start == -1:
 
             if orf_found == False and no_orf_exists == False:
-                print("No ORF exists")
+                special_print(" No ORF exists")
             break
 
         else:
@@ -104,14 +111,14 @@ if valid == True:
             if stop_found == True:
                 orf_found = True
 
-                print(f" ∆ This is ORF No. : {orf_number}")
-                print(f" The ORF sequence is : {orf}")
-                print(f" ORF Starts from : {start + 1}")
-                print(f" ORF Ends at : {orf_end}")
-                print(" Length of the ORF is :", orf_length)
+                special_print(f" ∆ This is ORF No. : {orf_number}")
+                special_print(f" The ORF sequence is : {orf}")
+                special_print(f" ORF Starts from : {start + 1}")
+                special_print(f" ORF Ends at : {orf_end}")
+                special_print(f" Length of the ORF is : {orf_length}")
 
                 mRna = orf.replace("T", "U")
-                print(f" The transcribed mRNA sequence is : {mRna} ")
+                special_print(f" The transcribed mRNA sequence is : {mRna} ")
 
                 length_mRna = len(mRna)
 
@@ -123,14 +130,17 @@ if valid == True:
 
                     if amino_acids == "STOP":
                         break
-                    
-                    amino_list.append(amino_acids) 
+                        
+                    amino_list.append(amino_acids)
                     protein = "-".join(amino_list)
 
-                print(f" The translated amino acid chain is : {protein}")
+                special_print(f" The translated amino acid chain is : {protein}")
 
             else:
-                starting_position = start + 3
+                starting_position = start +3
 
 else:
-    print(" Entered sequence is an Invalid DNA")
+    special_print(" Entered sequence is an Invalid DNA")
+with open(f"analysis_{timestamp}.txt", "w") as output_file :
+	output_file.write("\n".join(text_bucket))
+print(" [ FILE SAVED ]\n Full analysis report is saved in a analysis report file with  timestamp ")
