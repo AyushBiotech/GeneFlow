@@ -17,6 +17,7 @@ composition analysis, ORF detection, transcription, and translation.
 - Open Reading Frame (ORF) detection and custom minimum ORF length selection
 - Transcription of DNA to mRNA
 - Translation of mRNA into an amino acid sequence
+- Saves the output in a file with timestamp
 
 ## Technologies Used
 - Python 3
@@ -35,6 +36,7 @@ The sequence should contain standard DNA bases: A, T, G, C
 2. Place your DNA sequence in `input_dna.txt`.
 3. Run `GeneFlow.py` using Python 3.
 4. The program will display the sequence analysis results.
+5. The program will save the analysis output in analysis file with timestamp for future uses  
 
 ## Example
 Input: ATGCATGCGTAA
